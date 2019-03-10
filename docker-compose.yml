@@ -1,0 +1,16 @@
+version: '3'
+services:
+  nginx:
+    build: server/nginx/
+    ports:
+      - "8080:80"
+    environment:
+      - BACKEND_ADDR="uwsgi"
+      - BACKEND_PRT="9090"
+      - BACKEND_PRTCL="uwsgi://"
+  uwsgi:
+    build: server/uwsgi/
+    ports:
+      - "9090:9090"
+    environment:
+      - PORT="9090"
